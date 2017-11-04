@@ -38,15 +38,9 @@ $(document).ready(function() {
   // Adding of element functions
 
   var counter = 1;
-  function addInput(divName){ // divName is the name of the div to add the element on
+  function addInput(divName, inputType, placeholder, height, width, fontSize){
 
-    // Get input type of element to be added
-    var inputType = $( "#elementlist" ).val();
-    var placeholder = $( "#placeholder" ).val();
-    var height = $( "#height" ).val();
-    var width = $( "#width" ).val();
-    var fontSize = $( "#fontsize" ).val();
-
+    // divName is the name of the div to add the element on
     // if(placeholder != "" && height >= 0 && width >= 0 && fontSize > 0){
     if(placeholder != ""){
 
@@ -99,6 +93,8 @@ $(document).ready(function() {
    Set the following properties as well:
    className = dragger <- allows the dragging properties
    draggable = true
+   style.left <- left position of the element in the window
+   style.top <- top position of the element in the window
 
    Run the refreshDraggers() function to activate all the properties of "dragger"
 
@@ -125,7 +121,14 @@ $(document).ready(function() {
 
   // Adding of button listeners
   $( "#addElementButton" ).click(function() {
-      addInput('gui');
+    // Get input type of element to be added
+    var inputType = $( "#elementlist" ).val();
+    var placeholder = $( "#placeholder" ).val();
+    var height = $( "#height" ).val();
+    var width = $( "#width" ).val();
+    var fontSize = $( "#fontsize" ).val();
+
+    addInput('gui', inputType, placeholder, height, width, fontSize);
   });
   $( "#loadButton" ).click(function() {
       loadJSON();
