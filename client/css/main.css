@@ -1,0 +1,8 @@
+aside {
+    position:  absolute;
+    left: 1;
+    top: 1; /* set these so Chrome doesn't return 'auto' from getComputedStyle */
+    width: auto;
+    font-size: 20px;
+    background: rgba(255,255,255,0.90);
+}
