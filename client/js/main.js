@@ -58,7 +58,7 @@ $(document).ready(function() {
                                       + height + "px; width: " + width + "px; font-size: " + fontSize + "px;'>";
                  document.getElementById(divName).appendChild(element);
                  var check = {"inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
-                 jsonData.push(check);
+                 jsonData.push(JSON.stringify(check));
                  refreshDraggers();
                  counter++;
                  break;
@@ -68,7 +68,7 @@ $(document).ready(function() {
                                       + placeholder + "</span>";
                  document.getElementById(divName).appendChild(element);
                  var check = {"inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
-                 jsonData.push(check);
+                 jsonData.push(JSON.stringify(check));
                  refreshDraggers();
                  counter++;
                  break;
@@ -78,7 +78,7 @@ $(document).ready(function() {
                                       + placeholder + "</button>";
                  document.getElementById(divName).appendChild(element);
                  var check = {"inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
-                 jsonData.push(check);
+                 jsonData.push(JSON.stringify(check));
                  refreshDraggers();
                  counter++;
                  break;
@@ -122,8 +122,34 @@ $(document).ready(function() {
 
   */
   function saveJSON(){
-    var fs = require('fs');
-    fs.writeFile('test.json', jsonData);
+    //var fs = Npm.require('fs');
+    //fs.writeFileSync('test.json', jsonData);
+
+
+    // This is a super patch way, not a good way.
+    // If you can find another way, please do so.
+    var stringAsBlob = new Blob(jsonData, {type:'tapplication/json'});
+    var fileNameToSaveAs = "UIparser.json";
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    if (window.URL != null)
+    {
+        // Chrome allows the link to be clicked
+        // without actually adding it to the DOM.
+        downloadLink.href = window.URL.createObjectURL(stringAsBlob);
+    }
+    else
+    {
+        // Firefox requires the link to be added to the DOM
+        // before it can be clicked.
+        downloadLink.href = window.URL.createObjectURL(stringAsBlob);
+        downloadLink.onclick = document.body.removeChild(event.target);
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
   }
 
   // Adding of button listeners
