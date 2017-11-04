@@ -36,7 +36,7 @@ $(document).ready(function() {
   refreshDraggers();
 
   // Adding of element functions
-
+  var jsonData = [];
   var counter = 1;
   function addInput(divName, inputType, placeholder, height, width, fontSize){
 
@@ -57,6 +57,8 @@ $(document).ready(function() {
                  element.innerHTML = "<input type='text' placeholder='" + placeholder + "' style='height: "
                                       + height + "px; width: " + width + "px; font-size: " + fontSize + "px;'>";
                  document.getElementById(divName).appendChild(element);
+                 var check = {"inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
+                 jsonData.push(check);
                  refreshDraggers();
                  counter++;
                  break;
@@ -65,6 +67,8 @@ $(document).ready(function() {
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</span>";
                  document.getElementById(divName).appendChild(element);
+                 var check = {"inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
+                 jsonData.push(check);
                  refreshDraggers();
                  counter++;
                  break;
@@ -73,6 +77,8 @@ $(document).ready(function() {
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</button>";
                  document.getElementById(divName).appendChild(element);
+                 var check = {"inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
+                 jsonData.push(check);
                  refreshDraggers();
                  counter++;
                  break;
@@ -116,7 +122,8 @@ $(document).ready(function() {
 
   */
   function saveJSON(){
-
+    var fs = require('fs');
+    fs.writeFile('test.json', jsonData);
   }
 
   // Adding of button listeners
