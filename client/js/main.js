@@ -47,8 +47,9 @@ $(document).ready(function() {
     var width = $( "#width" ).val();
     var fontSize = $( "#fontsize" ).val();
 
-    if(placeholder != "" && height >= 0 && width >= 0 && fontSize > 0){
-
+    // if(placeholder != "" && height >= 0 && width >= 0 && fontSize > 0){
+    if(placeholder != ""){
+      
       console.log(counter);
 
       // Create the aside objects

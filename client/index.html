@@ -23,19 +23,23 @@
 
         <!--Drag and Drop Container-->
         <nav>
-          <div class="navbar container">
-            <select name="elementlist" id="elementlist">
-              <option value="label">Label</option>
-              <option value="text">Text</option>
-              <option value="button">Button</option>
-            </select>
-            <input type = "text" id="placeholder" placeholder="Name / Placeholder">
-            <input type = "text" id="height" placeholder="Height (in px)">
-            <input type = "text" id="width" placeholder="Width (in px)">
-            <input type = "text" id="fontsize" placeholder="Font size (in px)">
-            <button id = "addElementButton">Add Element</button>
-            <button id = "loadButton">Load JSON</button>
-            <button id = "saveButton">Save JSON</button>
+          <div class="navbar container-fluid">
+            <div class="navbar container">
+              <select name="elementlist" id="elementlist">
+                <option value="label">Label</option>
+                <option value="text">Text</option>
+                <option value="button">Button</option>
+              </select>
+              <input type = "text" id="placeholder" placeholder="Name / Placeholder">
+              <input type = "text" id="height" placeholder="Height (in px)">
+              <input type = "text" id="width" placeholder="Width (in px)">
+              <input type = "text" id="fontsize" placeholder="Font size (in px)">
+              <button id = "addElementButton">Add Element</button>
+            </div>
+            <div class="right">
+              <button id = "loadButton">Load JSON</button>
+              <button id = "saveButton">Save JSON</button>
+            </div>
           </div>
         </nav>
 
