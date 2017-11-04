@@ -1,57 +1,47 @@
-<html>
-    <head>
-        <title>Web Parser</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Web Parser</title>
 
-        <!--Import .css-->
-        <link type="text/css" rel="stylesheet" href="css/main.css"/>
+  <!--Import .css-->
+  <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link type="text/css" rel="stylesheet" href="css/main.css"/>
 
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+  <meta charset="UTF-8">
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!--JS Files-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="js/bootstrap.min.js"/>
+  <script type="text/javascript" src="js/main.js"></script>
+
+</head>
 
     <body>
 
         <!--Drag and Drop Container-->
         <nav>
-          <div class="nav-wrapper">
-            <div class="logo-container">
-                Add an element:
-            </div>
+          <div class="navbar container">
+            <select name="elementlist" id="elementlist">
+              <option value="label">Label</option>
+              <option value="text">Text</option>
+              <option value="button">Button</option>
+            </select>
+            <input type = "text" id="placeholder" placeholder="Name / Placeholder">
+            <input type = "text" id="height" placeholder="Height (in px)">
+            <input type = "text" id="width" placeholder="Width (in px)">
+            <input type = "text" id="fontsize" placeholder="Font size (in px)">
+            <button id = "addElementButton">Add Element</button>
+            <button id = "loadButton">Load JSON</button>
+            <button id = "saveButton">Save JSON</button>
           </div>
         </nav>
 
-        <div class="container">
-          <aside draggable="true" class="dragger" id="dragme1">
-              <span style="height: 15px; width: auto; font-size: 20px;">
-                Username:
-              </span>
-          </aside>
-          <aside draggable="true" class="dragger" id="dragme2">
-              <span style="height: 15px; width: auto; font-size: 20px;">
-                Password:
-              </span>
-          </aside>
-          <aside draggable="true" class="dragger" id="dragme3">
-              <input type = "text" style="height: 50px; width: 200px; font-size: 20px;">
-          </aside>
-          <aside draggable="true" class="dragger" id="dragme4">
-              <input type = "text" style="height: 50px; width: 200px; font-size: 20px;">
-          </aside>
-          <aside draggable="true" class="dragger" id="dragme5">
-              <button style="height: 50px; width: 200px; font-size: 20px;">
-                Submit
-              </button>
-          </aside>
-          <aside draggable="true" class="dragger" id="dragme6">
-              <button style="height: 50px; width: 200px; font-size: 20px;">
-                Click Me
-              </button>
-          </aside>
-        </div>
+        <div class="gui" id="gui">
 
-        <!--Import jQuery before materialize.js-->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+        </div>
     </body>
 
 </html>
