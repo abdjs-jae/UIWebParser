@@ -1,4 +1,4 @@
-function draggableElements(){
+$(document).ready(function() {
   function drag_start(event) {
       var style = window.getComputedStyle(event.target, null);
       event.dataTransfer.setData("text",
@@ -24,4 +24,4 @@ function draggableElements(){
   });
   document.body.addEventListener('dragover',drag_over,false);
   document.body.addEventListener('drop',drop,false);
-}
+});
