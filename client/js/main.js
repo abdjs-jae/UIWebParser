@@ -38,7 +38,7 @@ $(document).ready(function() {
   // Adding of element functions
 
   var counter = 1;
-  function addInput(divName){
+  function addInput(divName){ // divName is the name of the div to add the element on
 
     // Get input type of element to be added
     var inputType = $( "#elementlist" ).val();
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
     // if(placeholder != "" && height >= 0 && width >= 0 && fontSize > 0){
     if(placeholder != ""){
-      
+
       console.log(counter);
 
       // Create the aside objects
@@ -88,9 +88,49 @@ $(document).ready(function() {
     }
   }
 
+  /*
+   Load JSON file and display all the elements inside it
+
+   Open the file chooser and select the JSON file
+   Feel free to do error handling
+
+   Read the properties and add the elements using the addInput() function
+
+   Set the following properties as well:
+   className = dragger <- allows the dragging properties
+   draggable = true
+
+   Run the refreshDraggers() function to activate all the properties of "dragger"
+
+  */
+  function loadJSON(){
+
+  }
+
+  /*
+   Save all the elements and their respective properties in a JSON file.
+   Properties of the elements include:
+   inputType
+   placeholder
+   height
+   width
+   fontSize
+   leftPosition
+   rightPosition
+
+  */
+  function saveJSON(){
+
+  }
 
   // Adding of button listeners
   $( "#addElementButton" ).click(function() {
       addInput('gui');
+  });
+  $( "#loadButton" ).click(function() {
+      loadJSON();
+  });
+  $( "#saveButton" ).click(function() {
+      saveJSON();
   });
 });
