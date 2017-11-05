@@ -151,14 +151,31 @@ $(document).ready(function() {
 }
 
 
+
+
   function loadJSON(){
     // open the file chooser
+
     $('#file-input').trigger('click');
+    var elements = document.getElementsByClassName('dragger');
+    if(elements.length > 0){
+      removeElementByClass();
+    }
+
     document.getElementById('file-input').addEventListener('change',readSingleFile, false)
     // once file is selected, get the file from the input element
 
     // then, json stuff all over again!!!
   }
+
+  function removeElementByClass(){
+
+    var elements = document.getElementsByClassName('dragger');
+    while(elements.length > 0){
+          elements[0].parentNode.removeChild(elements[0]);
+    }
+  }
+
 
   /*
    Save all the elements and their respective properties in a JSON file.
