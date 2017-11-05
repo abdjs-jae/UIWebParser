@@ -180,7 +180,12 @@ $(document).ready(function() {
 
     addInput('gui', inputType, placeholder, height, width, fontSize);
   });
-  $( "#loadButton" ).click(function() {
+  $( "#loadButton" ).click(function(event) {
+      event.preventDefault();
+      // click the file chooser
+      $('#file').trigger('click');
+      // get the file from the input form
+      // document.getElementById('file').addEventListener('change', readFile, false);
       loadJSON();
   });
   $( "#saveButton" ).click(function() {
