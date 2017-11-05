@@ -123,6 +123,17 @@ $(document).ready(function() {
   */
   function loadJSON(){
 
+      // Read file
+      document.getElementById('file').addEventListener('change', readFile, false);
+      function readFile (evt) {
+         var files = evt.target.files;
+         var file = files[0];
+         var reader = new FileReader();
+         reader.onload = function(event) {
+           console.log(event.target.result);
+         }
+         reader.readAsText(file)
+      }
   }
 
   /*
@@ -145,7 +156,7 @@ $(document).ready(function() {
     // This is a super patch way, not a good way.
     // If you can find another way, please do so.
     var jsonDataText = JSON.stringify(jsonData);
-    var stringAsBlob = new Blob([jsonDataText], {type:'tapplication/json'});
+    var stringAsBlob = new Blob([jsonDataText], {type:'application/json'});
     var fileNameToSaveAs = "UIparser.json";
     var downloadLink = document.createElement("a");
     downloadLink.download = fileNameToSaveAs;
@@ -185,7 +196,6 @@ $(document).ready(function() {
       // click the file chooser
       $('#file').trigger('click');
       // get the file from the input form
-      // document.getElementById('file').addEventListener('change', readFile, false);
       loadJSON();
   });
   $( "#saveButton" ).click(function() {
