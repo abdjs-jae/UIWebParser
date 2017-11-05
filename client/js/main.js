@@ -52,7 +52,7 @@ $(document).ready(function() {
   // Adding of element functions
   var jsonData = [];
   var counter = 1;
-  function addInput(divName, inputType, placeholder, height, width, fontSize, leftPos, topPos){
+  function addInput(divName, inputType, placeholder, height, width, fontSize){
 
     // divName is the name of the div to add the element on
     if(placeholder != "" && height >= 0 && width >= 0 && fontSize > 0){
@@ -70,7 +70,7 @@ $(document).ready(function() {
                  element.innerHTML = "<input type='text' placeholder='" + placeholder + "' style='height: "
                                       + height + "px; width: " + width + "px; font-size: " + fontSize + "px;'>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
+                 var check = {"id":element.id, "inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -80,7 +80,7 @@ $(document).ready(function() {
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</div>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
+                 var check = {"id":element.id, "inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -90,7 +90,7 @@ $(document).ready(function() {
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</button>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
+                 var check = {"id":element.id, "inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -118,9 +118,33 @@ $(document).ready(function() {
    Run the refreshDraggers() function to activate all the properties of "dragger"
 
   */
+  function readSingleFile(evt) {
+  //Retrieve the first (and only!) File from the FileList object
+  var f = evt.target.files[0];
+
+  if (f) {
+    var r = new FileReader();
+    r.onload = function(e) {
+      var contents = e.target.result;
+      alert( "Got the file.n"
+            +"name: " + f.name + "n"
+            +"type: " + f.type + "n"
+            +"size: " + f.size + " bytesn"
+            + "contents:" + contents
+           );
+    }
+    r.readAsText(f);
+  } else {
+    alert("Failed to load file");
+  }
+}
+
+
   function loadJSON(){
     // open the file chooser
     $('#file-input').trigger('click');
+    document.getElementById('file-input').addEventListener('change',readSingleFile, false)
+
 
     // once file is selected, get the file from the input element
 
@@ -180,7 +204,7 @@ $(document).ready(function() {
     var width = $( "#width" ).val();
     var fontSize = $( "#fontsize" ).val();
 
-    addInput('gui', inputType, placeholder, height, width, fontSize, 0, 0);
+    addInput('gui', inputType, placeholder, height, width, fontSize);
   });
   $( "#loadButton" ).click(function() {
       loadJSON();
