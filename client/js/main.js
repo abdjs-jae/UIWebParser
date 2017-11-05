@@ -121,11 +121,12 @@ $(document).ready(function() {
   function readSingleFile(evt) {
   //Retrieve the first (and only!) File from the FileList object
   var f = evt.target.files[0];
+  var contents;
 
   if (f) {
     var r = new FileReader();
     r.onload = function(e) {
-      var contents = e.target.result;
+      contents = e.target.result; //contains the string version of the json file
       alert( "Got the file.n"
             +"name: " + f.name + "n"
             +"type: " + f.type + "n"
@@ -145,7 +146,7 @@ $(document).ready(function() {
     $('#file-input').trigger('click');
     document.getElementById('file-input').addEventListener('change',readSingleFile, false)
 
-
+    JSON.parse(contents);
     // once file is selected, get the file from the input element
 
     // then, json stuff all over again!!!
