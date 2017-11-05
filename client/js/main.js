@@ -79,7 +79,7 @@ $(document).ready(function() {
                  counter++;
                  break;
             case 'label':
-                 element.innerHTML = "<div style='text-align:center; height: " + height +
+                 element.innerHTML = "<div style='text-align:center; display:table-cell; vertical-align:middle;height: " + height +
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</div>";
                  document.getElementById(divName).appendChild(element);
