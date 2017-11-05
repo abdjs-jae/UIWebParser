@@ -15,10 +15,14 @@ $(document).ready(function() {
       var offset = event.dataTransfer.getData("text").split(',');
       var id = event.dataTransfer.getData("id");
       var dm = document.getElementById(id);
+      var getter = "#" + id;
+      var getData = $(getter).text();
+
       // left position in the window
       dm.style.left = (event.clientX + parseInt(offset[0],10)) + 'px';
       // top position in the window
       dm.style.top = (event.clientY + parseInt(offset[1],10)) + 'px';
+      editValueAtJSON(getData, dm.style.left, dm.style.top);
       event.preventDefault();
       return false;
   }
@@ -31,6 +35,18 @@ $(document).ready(function() {
     });
     document.body.addEventListener('dragover',drag_over,false);
     document.body.addEventListener('drop',drop,false);
+  }
+
+  function editValueAtJSON(text, left, top) {
+    console.log(jsonData.length);
+    for(i = 0; i < jsonData.length; i++) {
+      var text2 = jsonData[i].placeholder;
+      if(text.localeCompare(text2) == 0) {
+        jsonData[i].leftPosition = left;
+        jsonData[i].rightPosition = top;
+      }
+    }
+    console.log(jsonData);
   }
 
   refreshDraggers();
@@ -58,7 +74,7 @@ $(document).ready(function() {
                                       + height + "px; width: " + width + "px; font-size: " + fontSize + "px;'>";
                  document.getElementById(divName).appendChild(element);
                  var check = {"inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
-                 jsonData.push(JSON.stringify(check));
+                 jsonData.push(check);
                  refreshDraggers();
                  counter++;
                  break;
@@ -68,7 +84,7 @@ $(document).ready(function() {
                                       + placeholder + "</span>";
                  document.getElementById(divName).appendChild(element);
                  var check = {"inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
-                 jsonData.push(JSON.stringify(check));
+                 jsonData.push(check);
                  refreshDraggers();
                  counter++;
                  break;
@@ -78,7 +94,7 @@ $(document).ready(function() {
                                       + placeholder + "</button>";
                  document.getElementById(divName).appendChild(element);
                  var check = {"inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
-                 jsonData.push(JSON.stringify(check));
+                 jsonData.push(check);
                  refreshDraggers();
                  counter++;
                  break;
@@ -128,7 +144,8 @@ $(document).ready(function() {
 
     // This is a super patch way, not a good way.
     // If you can find another way, please do so.
-    var stringAsBlob = new Blob(jsonData, {type:'tapplication/json'});
+    var jsonDataText = JSON.stringify(jsonData);
+    var stringAsBlob = new Blob([jsonDataText], {type:'tapplication/json'});
     var fileNameToSaveAs = "UIparser.json";
     var downloadLink = document.createElement("a");
     downloadLink.download = fileNameToSaveAs;
