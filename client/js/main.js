@@ -52,7 +52,7 @@ $(document).ready(function() {
   // Adding of element functions
   var jsonData = [];
   var counter = 1;
-  function addInput(divName, inputType, placeholder, height, width, fontSize){
+  function addInput(divName, inputType, placeholder, height, width, fontSize, leftPos, topPos){
 
     // divName is the name of the div to add the element on
     if(placeholder != "" && height >= 0 && width >= 0 && fontSize > 0){
@@ -70,7 +70,7 @@ $(document).ready(function() {
                  element.innerHTML = "<input type='text' placeholder='" + placeholder + "' style='height: "
                                       + height + "px; width: " + width + "px; font-size: " + fontSize + "px;'>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
+                 var check = {"id":element.id, "inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -80,7 +80,7 @@ $(document).ready(function() {
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</div>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
+                 var check = {"id":element.id, "inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -90,7 +90,7 @@ $(document).ready(function() {
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</button>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
+                 var check = {"id":element.id, "inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -205,7 +205,7 @@ $(document).ready(function() {
     var width = $( "#width" ).val();
     var fontSize = $( "#fontsize" ).val();
 
-    addInput('gui', inputType, placeholder, height, width, fontSize);
+    addInput('gui', inputType, placeholder, height, width, fontSize, 0, 0);
   });
   $( "#loadButton" ).click(function() {
       loadJSON();
