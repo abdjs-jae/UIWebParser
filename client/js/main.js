@@ -119,7 +119,12 @@ $(document).ready(function() {
 
   */
   function loadJSON(){
+    // open the file chooser
+    $('#file-input').trigger('click');
 
+    // once file is selected, get the file from the input element
+
+    // then, json stuff all over again!!!
   }
 
   /*
