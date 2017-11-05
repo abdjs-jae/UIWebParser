@@ -69,6 +69,8 @@ $(document).ready(function() {
             case 'text':
                  element.innerHTML = "<input type='text' placeholder='" + placeholder + "' style='height: "
                                       + height + "px; width: " + width + "px; font-size: " + fontSize + "px;'>";
+                 element.style.left = leftPos + "px";
+                 element.style.top = topPos + "px";
                  document.getElementById(divName).appendChild(element);
                  var check = {"id":element.id, "inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
                  jsonData.push(check);
@@ -79,6 +81,8 @@ $(document).ready(function() {
                  element.innerHTML = "<div style='text-align:center; display:table-cell; vertical-align:middle; height: " + height +
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</div>";
+                 element.style.left = leftPos + "px";
+                 element.style.top = topPos + "px";
                  document.getElementById(divName).appendChild(element);
                  var check = {"id":element.id, "inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
                  jsonData.push(check);
@@ -89,6 +93,8 @@ $(document).ready(function() {
                  element.innerHTML = "<button style='height: " + height +
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</button>";
+                 element.style.left = leftPos + "px";
+                 element.style.top = topPos + "px";
                  document.getElementById(divName).appendChild(element);
                  var check = {"id":element.id, "inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
                  jsonData.push(check);
@@ -127,12 +133,16 @@ $(document).ready(function() {
     var r = new FileReader();
     r.onload = function(e) {
       contents = e.target.result; //contains the string version of the json file
-      alert( "Got the file.n"
-            +"name: " + f.name + "n"
-            +"type: " + f.type + "n"
-            +"size: " + f.size + " bytesn"
-            + "contents:" + contents
-           );
+      contents = JSON.parse(contents);
+      for(i = 0; i < contents.length; i++) {
+        console.log(contents[i]);
+        var h = parseInt(contents[i].height);
+        var w = parseInt(contents[i].width);
+        var f = parseInt(contents[i].fontSize);
+        var leftPos = parseInt(contents[i].leftPosition.substring(0, contents[i].leftPosition.length-2));
+        var topPos = parseInt(contents[i].topPosition.substring(0, contents[i].topPosition.length-2));
+        addInput('gui', contents[i].inputType, contents[i].placeholder, h, w, f, leftPos, topPos);
+      }
     }
     r.readAsText(f);
   } else {
@@ -145,8 +155,6 @@ $(document).ready(function() {
     // open the file chooser
     $('#file-input').trigger('click');
     document.getElementById('file-input').addEventListener('change',readSingleFile, false)
-
-    JSON.parse(contents);
     // once file is selected, get the file from the input element
 
     // then, json stuff all over again!!!
