@@ -79,9 +79,9 @@ $(document).ready(function() {
                  counter++;
                  break;
             case 'label':
-                 element.innerHTML = "<span style='height: " + height +
+                 element.innerHTML = "<div style='text-align:center; height: " + height +
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
-                                      + placeholder + "</span>";
+                                      + placeholder + "</div>";
                  document.getElementById(divName).appendChild(element);
                  var check = {"inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
                  jsonData.push(check);
