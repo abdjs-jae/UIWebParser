@@ -55,8 +55,7 @@ $(document).ready(function() {
   function addInput(divName, inputType, placeholder, height, width, fontSize){
 
     // divName is the name of the div to add the element on
-    // if(placeholder != "" && height >= 0 && width >= 0 && fontSize > 0){
-    if(placeholder != ""){
+    if(placeholder != "" && height >= 0 && width >= 0 && fontSize > 0){
 
       console.log(counter);
 
