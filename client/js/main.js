@@ -43,7 +43,7 @@ $(document).ready(function() {
       var text2 = jsonData[i].placeholder;
       if(text.localeCompare(text2) == 0) {
         jsonData[i].leftPosition = left;
-        jsonData[i].rightPosition = top;
+        jsonData[i].topPosition = top;
       }
     }
     console.log(jsonData);
@@ -73,7 +73,7 @@ $(document).ready(function() {
                  element.innerHTML = "<input type='text' placeholder='" + placeholder + "' style='height: "
                                       + height + "px; width: " + width + "px; font-size: " + fontSize + "px;'>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
+                 var check = {"inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -83,7 +83,7 @@ $(document).ready(function() {
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</span>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
+                 var check = {"inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -93,7 +93,7 @@ $(document).ready(function() {
                                       "px; width: " + width + "px; font-size: " + fontSize + "px;'>"
                                       + placeholder + "</button>";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "rightPosition":0};
+                 var check = {"inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":0, "topPosition":0};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
