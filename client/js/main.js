@@ -72,7 +72,7 @@ $(document).ready(function() {
                  element.style.left = leftPos + "px";
                  element.style.top = topPos + "px";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
+                 var check = {"id":element.id, "inputType":"text", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos+"px", "topPosition":topPos+"px"};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -84,7 +84,7 @@ $(document).ready(function() {
                  element.style.left = leftPos + "px";
                  element.style.top = topPos + "px";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
+                 var check = {"id":element.id, "inputType":"label", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos+"px", "topPosition":topPos+"px"};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -96,7 +96,7 @@ $(document).ready(function() {
                  element.style.left = leftPos + "px";
                  element.style.top = topPos + "px";
                  document.getElementById(divName).appendChild(element);
-                 var check = {"id":element.id, "inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos, "topPosition":topPos};
+                 var check = {"id":element.id, "inputType":"button", "placeholder":placeholder, "height":height, "width":width, "fontSize":fontSize, "leftPosition":leftPos+"px", "topPosition":topPos+"px"};
                  jsonData.push(check);
                  refreshDraggers();
                  counter++;
@@ -233,6 +233,7 @@ $(document).ready(function() {
     addInput('gui', inputType, placeholder, height, width, fontSize, 0, 0);
   });
   $( "#loadButton" ).click(function() {
+      jsonData = [];
       loadJSON();
   });
   $( "#saveButton" ).click(function() {
