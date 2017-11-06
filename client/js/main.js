@@ -232,6 +232,13 @@ $(document).ready(function() {
 
     addInput('gui', inputType, placeholder, height, width, fontSize, 0, 0);
   });
+  $( "#clearElementButton" ).click(function() {
+      jsonData = [];
+      var elements = document.getElementsByClassName('dragger');
+      if(elements.length > 0){
+        removeElementByClass();
+      }
+  });
   $( "#loadButton" ).click(function() {
       jsonData = [];
       loadJSON();
